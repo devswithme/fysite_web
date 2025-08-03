@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+* {
+    font-family: 'JetBrains Mono', 'monospace';
+}
+
+@theme {
+    --color-primary: #1B24FF;
+    --color-dark: #282828;
+    --color-light: #F0F0F0;
+    --color-muted-foreground: #808080
+}
