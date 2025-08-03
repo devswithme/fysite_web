@@ -1,35 +1,34 @@
-FROM node:18-alpine
+FROM node:18-alpine as base
 
 WORKDIR /app
 
+RUN npm install -g pnpm
+
 FROM base as deps
 
-RUN --mount=type=bind,source=package.json,target=package.json \
-   --mount=type=bind,source=pnpm.lock.yaml,target=pnpm.lock.yaml \
-   --mount=type=cache,target=/root/.local/share/pnpm/store \
-    pnpm install --frozen-lockfile
+COPY package.json ./
+COPY pnpm-lock.yaml ./
+
+RUN pnpm install --frozen-lockfile
 
 FROM deps as build
 
 COPY . .
 
-COPY --from=deps /usr/src/app/node_modules ./node_modules
-
 RUN pnpm run build
 
 FROM base as final
-
 
 ENV NODE_ENV=production
 ENV ORIGIN=http://localhost:5173
 
 USER node
 
-COPY package.json .
+COPY package.json ./
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/server ./server
 
-EXPOSE 3000
+EXPOSE 5173
 
-CMD ["pnpm", "dev"] 
+CMD ["pnpm", "serve"]
