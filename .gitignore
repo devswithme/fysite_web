@@ -1,6 +1,6 @@
 # Build
 /dist
-/src/shared
+# /src/shared
 /lib-types
 /server
 
