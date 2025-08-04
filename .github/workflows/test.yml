@@ -1,0 +1,24 @@
+name: test
+
+on: workflow_dispatch
+
+jobs:
+  test-ssh:
+    runs-on: ubuntu-24.04-lts
+
+    env:
+      HOST: ${{ secrets.HOST }}
+      USER: ${{ secrets.USER }}
+      PASS: ${{ secrets.PASS }}
+
+    steps:
+      - name: Connect & Run simple command
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ env.HOST }}
+          username: ${{ env.USER }}
+          password: ${{ env.PASS }}
+          script: |
+            echo "✅ Connected to VPS!"
+            uname -a
+            uptime
