@@ -1,18 +1,10 @@
-import { component$, useVisibleTask$, isDev } from "@builder.io/qwik";
+import { component$, isDev } from "@builder.io/qwik";
 import { QwikCityProvider, RouterOutlet } from "@builder.io/qwik-city";
 import { RouterHead } from "./components/router-head/router-head";
 
 import "./global.css";
 
 export default component$(() => {
-  // eslint-disable-next-line qwik/no-use-visible-task
-  useVisibleTask$(() => {
-    const script = document.createElement("script");
-    script.src = "https://tally.so/widgets/embed.js";
-    script.async = true;
-    document.body.appendChild(script);
-  });
-
   return (
     <QwikCityProvider>
       <head>
@@ -27,6 +19,7 @@ export default component$(() => {
       </head>
       <body lang="en">
         <RouterOutlet />
+        <script src="https://tally.so/widgets/embed.js" async></script>
       </body>
     </QwikCityProvider>
   );

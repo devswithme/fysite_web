@@ -3,7 +3,6 @@ FROM node:18-alpine as base
 WORKDIR /app
 
 RUN npm install -g pnpm
-
 FROM base as deps
 
 COPY package.json ./
