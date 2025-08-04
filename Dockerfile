@@ -10,4 +10,4 @@ COPY . .
 
 RUN pnpm run build
 
-CMD ["pnpm", "preview"]
+CMD ["pnpm", "preview", "--host"]
