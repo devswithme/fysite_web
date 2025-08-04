@@ -26,7 +26,11 @@ jobs:
           password: ${{ env.PASS }}
           script: |
             cd $HOME/web
+
+            git reset --hard
+            git clean -fd
             git pull origin main
+
             docker-compose down
             docker-compose up -d --build
             docker-compose ps
