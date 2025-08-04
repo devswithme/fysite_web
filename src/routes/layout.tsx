@@ -46,7 +46,7 @@ export default component$(() => {
       <main class="max-w-4xl mx-auto my-24 px-6 lg:px-0 space-y-10">
         <Slot />
         <Button
-          style="fixed bottom-6 right-6 bg-primary p-4 rounded-full"
+          style="fixed -bottom-4 right-6 sm:bottom-0 sm:right-10 bg-primary p-4 rounded-full"
           data-tally-open="3jAYDE"
           data-tally-align-left="1"
           data-tally-emoji-text="🚨"
