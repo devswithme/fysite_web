@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   web:
     build: .
@@ -10,13 +8,8 @@ services:
       - nginx-proxy
     expose:
       - "4173"
-    environment:
-      - VIRTUAL_HOST=fysite.id
-      - LETSENCRYPT_HOST=fysite.id
-      - LETSENCRYPT_EMAIL=testedprojected@gmail.com
-    volumes:
-      - "/root/cms/content:/app/content"
-      - "/root/cms/public:/app/public"
+    env_file:
+      - .env
 
 networks:
   nginx-proxy:
